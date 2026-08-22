@@ -4,3 +4,14 @@
     flex-wrap: wrap; 
     margin: 30px;
 }
+
+.van-filters{
+    display: flex; 
+    gap:20px
+}
+
+.van-filters a{
+    color: gray; 
+    font-size: 20px; 
+    text-decoration: none;
+}

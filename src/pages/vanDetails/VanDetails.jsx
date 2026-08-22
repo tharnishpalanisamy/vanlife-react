@@ -9,6 +9,7 @@ export default function VanDetails(){
     let param = useParams()  
     
     const [currentVan , setCurrentVan] = useState(null) 
+    console.log(currentVan);
     
     useEffect(() =>{
         async function fetchVan(){ 
