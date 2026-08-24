@@ -15,3 +15,12 @@
     font-size: 20px; 
     text-decoration: none;
 }
+
+.type-button{
+    padding: 10px 18px; 
+    border: none; 
+    border-radius: 10px;
+}
+.selected{
+    background-color: purple;
+}

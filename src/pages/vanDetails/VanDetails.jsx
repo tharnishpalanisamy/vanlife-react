@@ -1,6 +1,6 @@
 import './VanDetails.css' 
 import Navbar from '../../components/navbar/Navbar' 
-import {Link , useParams} from 'react-router-dom'
+import {Link , useLocation, useParams} from 'react-router-dom'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
@@ -9,7 +9,12 @@ export default function VanDetails(){
     let param = useParams()  
     
     const [currentVan , setCurrentVan] = useState(null) 
-    console.log(currentVan);
+
+    const location = useLocation()  
+    console.log('full', location);
+    
+    console.log('locstate',location.state.search);
+    
     
     useEffect(() =>{
         async function fetchVan(){ 
@@ -23,10 +28,15 @@ export default function VanDetails(){
     } , [])
     
     
+    let filterType = location.state?.type || 'All'
+
     return(
         <>
             <div className="van-details">
-                <Link to = '/vans' >Previous</Link>  
+                <Link to = {`..${location.state.search ? `?${location.state.search}` : ''}`} relative='path' 
+                 state={{search:location.state.search }}>
+                    {`Back to ${filterType} Vans`}
+                </Link>  
 
                 <img src={currentVan?.imageUrl} alt="" />
                 <div className="van-contents">
