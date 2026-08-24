@@ -15,8 +15,9 @@ import VanDetailsLayout from './components/vanDetailsLayout/VanDetailsLayout'
 import Pricing from './pages/host/Pricing'
 import Photos from './pages/host/Photos'  
 import UserVanLayout from './components/UserVansLayout/UserVanLayout' 
-import NotFound from './components/notFound/NotFound' 
-import { loader as vansLoader } from './pages/vans/Vans'
+import NotFound from './components/notFound/NotFound'  
+import { loader as vansLoader } from './pages/vans/Vans' 
+import Error from './components/error/Error'
  
 
 export default function App(){ 
@@ -26,7 +27,7 @@ export default function App(){
             <Route path='about' element={<About/>}/> 
 
             <Route path='vans' element={<Outlet/>}>  
-              <Route index element={<Vans/>} loader = {vansLoader}/>
+              <Route index element={<Vans/>} loader = {vansLoader} errorElement={<Error/>}/>
               
               <Route path=':id' element={<VanDetails/>}/>
             </Route>

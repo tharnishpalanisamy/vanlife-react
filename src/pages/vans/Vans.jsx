@@ -60,6 +60,8 @@ export default function Vans(){
 
 export async function loader(){
 
+    throw new  Error('checking ')
+
     try{
         
         let response = await fetch('/api/vans')
