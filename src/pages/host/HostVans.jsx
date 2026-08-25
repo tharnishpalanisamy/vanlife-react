@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react"
 import './Host.css' 
-import { NavLink } from "react-router-dom"
+import { NavLink, useLoaderData } from "react-router-dom"
 export default function HostVans(){ 
-    const [hostVans , setHostVans] = useState([]) 
-    useEffect(()=>{
-        fetch('/api/vans').then(res => res.json()).then(res => setHostVans(res.vans)) 
-    } , [] )
+    let hostVans = useLoaderData()
 
     let hostVanElements = hostVans.map(van =>{ 
         return (                      
@@ -27,4 +24,11 @@ export default function HostVans(){
             
         </>
     )
+}
+
+
+export async function loader(){
+    let res = await fetch('/api/vans') 
+    let vans = await res.json() 
+    return vans.vans 
 }

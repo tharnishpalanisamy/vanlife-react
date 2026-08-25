@@ -60,26 +60,25 @@ export default function Vans(){
 
 export async function loader(){
 
-    throw {
-        message : 'Checking the Error' , 
-        statusText : 'checking ' , 
-        status : 400 
-    }
-
-    // try{
-        
-    //     let response = await fetch('/api/vans')
-    //     let data = await response.json()  
-    //     // if(type) {
-    //     //     data.vans = data.vans.filter(item => item.type == type) 
-    //     // }
-    //     // setVans(data.vans)
-    //     return data.vans 
-    // }  
-    // catch(error){ 
-    //     console.log(error); 
-    //     return error 
+    // throw {
+    //     message : 'Checking the Error' , 
+    //     statusText : 'checking ' , 
+    //     status : 400 
     // }
 
-    //     return 'Loader summa data'
+    try{
+        
+        let response = await fetch('/api/vans')
+        let data = await response.json()  
+        // if(type) {
+        //     data.vans = data.vans.filter(item => item.type == type) 
+        // }
+        // setVans(data.vans)
+        return data.vans 
+    }  
+    catch(error){ 
+        console.log(error); 
+        return error 
+    }
+
 }

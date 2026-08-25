@@ -1,23 +1,12 @@
 import { useEffect, useState } from "react"
-import { useParams  , NavLink, Outlet } from "react-router-dom" 
+import { useParams  , NavLink, Outlet, useLoaderData } from "react-router-dom" 
 import './VanDetailsLayout.css'
-
+import { requireAuth } from "../../utils"
 export default  function VanDetailsLayout (){
 
     let params = useParams() 
-    const [currentVan , setCurrentVan] = useState({}) 
-    
-    useEffect(() =>{
-        async function fetchVan(){ 
-            let response = await fetch(`/api/vans/${params.id}`)  
-            let data = await response.json()  
-            console.log(data);
-            
-            setCurrentVan(data.van)  
-        } 
-        fetchVan()
-    } , [])
-    console.log( 'c' , currentVan);
+    let currentVan = useLoaderData() 
+
     
     return(
         <> 
@@ -46,4 +35,11 @@ export default  function VanDetailsLayout (){
             </div>
         </>
     )
+}
+
+export async function loader({params}){ 
+    await requireAuth() 
+    let res = await fetch(`/api/vans/${params.id}`) 
+    let vans = await res.json() 
+    return vans.vans  
 }
